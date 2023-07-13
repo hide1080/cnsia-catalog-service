@@ -36,6 +36,8 @@ public record Book(
   )
   Double price,
 
+  String publisher,
+
   @CreatedDate
   Instant createdDate,
 
@@ -50,8 +52,19 @@ public record Book(
     String isbn,
     String title,
     String author,
-    Double price
+    Double price,
+    String publisher
   ) {
-    return new Book(null, isbn, title, author, price, null, null, 0);
+    return new Book(
+      null,
+      isbn,
+      title,
+      author,
+      price,
+      publisher,
+      null,
+      null,
+      0
+    );
   }
 }
