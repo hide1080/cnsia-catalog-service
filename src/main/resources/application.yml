@@ -14,8 +14,6 @@ server:
 spring:
   application:
     name: catalog-service
-  lifecycle:
-    timeout-per-shutdown-phase: 15s
   config:
     import: "optional:configserver:"
   cloud:
@@ -37,6 +35,13 @@ spring:
     hikari:
       connection-timeout: 2000 # 2s
       maximum-pool-size: 5
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/PolarBookshop
 
 management:
   endpoints:

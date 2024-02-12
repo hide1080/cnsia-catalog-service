@@ -95,4 +95,12 @@ class BookValidationTests {
     assertThat(violations).hasSize(1);
     assertThat(violations.iterator().next().getMessage())
       .isEqualTo("The book price must be greater than zero.");
-  }}
+  }
+
+  @Test
+  void whenPublisherIsNotDefinedThenValidationSucceeds() {
+    var book = Book.of("1234567890", "Title", "Author", 9.90, null);
+    Set<ConstraintViolation<Book>> violations = validator.validate(book);
+    assertThat(violations).isEmpty();
+  }
+}
