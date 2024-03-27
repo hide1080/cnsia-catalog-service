@@ -18,19 +18,17 @@ public class SecurityConfig {
   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     return http
       .authorizeHttpRequests(authrize -> authrize
+        .mvcMatchers("/actuator/**").permitAll()
         .mvcMatchers(HttpMethod.GET, "/", "/books/**").permitAll()
         .anyRequest().hasRole("employee")
       )
-      .oauth2ResourceServer(
-        OAuth2ResourceServerConfigurer::jwt
-      )
+      .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
       .sessionManagement(sessionManagement -> sessionManagement
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       )
       .csrf(AbstractHttpConfigurer::disable)
       .build();
   }
-
 
   @Bean
   JwtAuthenticationConverter jwtAuthenticationConverter() {
