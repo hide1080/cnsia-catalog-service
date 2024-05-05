@@ -43,8 +43,6 @@ server:
 spring:
   application:
     name: catalog-service
-  config:
-    import: "" # import: "optional:configserver:"
   cloud:
     config:
       enabled: false
@@ -57,6 +55,8 @@ spring:
         initial-interval: 1000 # 1s
         max-interval: 2000
         multiplier: 1.1
+  config:
+    import: "" # "optional:configserver:"
   datasource:
     username: user
     password: password
